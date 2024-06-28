@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b314eca8f31c3348b887afc2ba8b821, type: 3}
+  m_Name: RifleCosmetic
+  m_EditorClassIdentifier: 
+  itemName: Rifle
+  itemValue: 10
+  itemQuantity: 1
+  itemSprite: {fileID: 21300020, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
