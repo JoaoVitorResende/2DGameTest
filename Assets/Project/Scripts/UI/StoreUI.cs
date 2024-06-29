@@ -53,6 +53,7 @@ namespace UserInterface
                 itemToSell.name = item.GetItemName();
                 itemToSell.transform.parent = storeSellObjects.transform;
                 itemToSell.GetComponent<Button>().onClick.AddListener(delegate() { SellItem(); });
+                itemToSell.GetComponent<Button>().onClick.AddListener(delegate () { AudioSourceInGame.instance.PlayAudioClip(1); });
                 buttonsPlayer.Add(itemToSell);
             }
 
