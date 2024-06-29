@@ -50,6 +50,7 @@ namespace UserInterface
             foreach (ItemScriptableObject item in PlayerInventory.instance.GetListOfPlayersItens())
             {
                 GameObject itemToSell = Instantiate(itemPrefab);
+                itemToSell.name = item.GetItemName();
                 itemToSell.transform.parent = storeSellObjects.transform;
                 itemToSell.GetComponent<Button>().onClick.AddListener(delegate() { SellItem(); });
                 buttonsPlayer.Add(itemToSell);
@@ -68,7 +69,6 @@ namespace UserInterface
         {
             ItemScriptableObject item = StoreData.instance.GetItem(EventSystem.current.currentSelectedGameObject.name);
             bool isItemSold = PlayerInventory.instance.SetNewItemToInventory(item);
-           
             CheckItemQuantity(item, isItemSold);
         }
 
@@ -79,18 +79,17 @@ namespace UserInterface
             PlayerInventory.instance.RemoveItemFromList(itemName);
             int newItemQuantity = int.Parse(itemOnStore.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text);
             UpdateItemOnStore(newItemQuantity + itemMinimunQuantity, true);
+            InventoryUI.isntance.RemoveItemFromInventory(itemName);
             if (newItemQuantity == 0)
             {
-                Destroy(GameObject.Find(itemName));
+                Destroy(EventSystem.current.currentSelectedGameObject);
             }
         }
 
         private void CheckItemQuantity(ItemScriptableObject item, bool isItemSold)
         {
             GameObject objectOnStore = CheckObjectOnList(item.GetItemName());
-
             int itemQuantity = int.Parse(objectOnStore.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text);
-
             if (itemQuantity == itemMinimunQuantity && isItemSold)
             {
                 RemoveItemFromStore(item.GetItemName());
@@ -103,7 +102,6 @@ namespace UserInterface
         private void UpdateItemOnStore(int itemQuantity, bool isSelling)
         {
             StoreData.instance.SetNewItemQuantity(itemQuantity, buttonPosition);
-
             if(isSelling)
                 storeButtons[buttonPosition].GetComponent<Button>().interactable = true;
         }
@@ -111,7 +109,6 @@ namespace UserInterface
         private void RemoveItemFromStore(string itemName)
         {
             GameObject item = CheckObjectOnList(itemName);
-            
             item.GetComponent<Button>().interactable = false;
         }
 

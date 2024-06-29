@@ -41,7 +41,7 @@ namespace Util
                 buttonsPlayerInventory[i].transform.GetChild(itemSprite).GetComponent<Image>().sprite = itensPlayers[i].GetItemSprite();
                 buttonsPlayerInventory[i].transform.GetChild(itemValue).GetComponent<TextMeshProUGUI>().text = "Value: " + itensPlayers[i].GetItemValue().ToString();
                 buttonsPlayerInventory[i].transform.GetChild(itemQuantity).GetComponent<TextMeshProUGUI>().text = itensPlayers[i].GetItemQuantity().ToString();
-                buttonsPlayerInventory[i].name = itemScriptableObjects[i].GetItemName();
+                buttonsPlayerInventory[i].name = itensPlayers[i].GetItemName();
             }
         }
 
