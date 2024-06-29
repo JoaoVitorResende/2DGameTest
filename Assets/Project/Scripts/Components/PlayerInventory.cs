@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace player
+namespace Player
 {
     public class PlayerInventory : MonoBehaviour
     {
@@ -10,11 +10,8 @@ namespace player
         [SerializeField] private int playerMoney = 30;
         [SerializeField] List<ItemScriptableObject> itens = new List<ItemScriptableObject>();
 
-        private void Start()
-        {
-            instance = this;
-        }
-
+        private void Start() => instance = this;
+      
         public bool SetNewItemToInventory(ItemScriptableObject item)
         {
             if (playerMoney >= item.GetItemValue())
@@ -29,14 +26,15 @@ namespace player
 
         public void RemoveItemFromList(string itemName)
         {
-            foreach (ItemScriptableObject item in itens)
+            for(int i = 0; i < itens.Count;i++)
             {
-                if (item.GetItemName().Equals(itemName))
+                if (itens[i].GetItemName().Equals(itemName))
                 {
-                    playerMoney = item.GetItemValue();
-                    itens.Remove(item);
+                    playerMoney += itens[i].GetItemValue();
+                    itens.Remove(itens[i]);
                 }
             }
+            itens.RemoveAll(i => i == null);
         }
 
         public List<ItemScriptableObject> GetListOfPlayersItens() => itens;
