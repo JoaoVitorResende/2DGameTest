@@ -24,25 +24,22 @@ namespace Util
         private void SetStoreItensOptionsBuy()
         {
             for (int i = 0; i < itemScriptableObjects.Count; i++)
-            {
-                buttons[i].transform.GetChild(itemName).GetComponent<TextMeshProUGUI>().text = itemScriptableObjects[i].GetItemName();
-                buttons[i].transform.GetChild(itemSprite).GetComponent<Image>().sprite = itemScriptableObjects[i].GetItemSprite();
-                buttons[i].transform.GetChild(itemValue).GetComponent<TextMeshProUGUI>().text = "Value: " + itemScriptableObjects[i].GetItemValue().ToString();
-                buttons[i].transform.GetChild(itemQuantity).GetComponent<TextMeshProUGUI>().text = itemScriptableObjects[i].GetItemQuantity().ToString();
-                buttons[i].name = itemScriptableObjects[i].GetItemName();
-            }
+                InsertItensData(buttons[i], itemScriptableObjects[i]);
         }
 
         public void SetStoreItensOptionSell(List<ItemScriptableObject> itensPlayers, List<GameObject> buttonsPlayerInventory)
         {
             for (int i = 0; i < itensPlayers.Count; i++)
-            {
-                buttonsPlayerInventory[i].transform.GetChild(itemName).GetComponent<TextMeshProUGUI>().text = itensPlayers[i].GetItemName();
-                buttonsPlayerInventory[i].transform.GetChild(itemSprite).GetComponent<Image>().sprite = itensPlayers[i].GetItemSprite();
-                buttonsPlayerInventory[i].transform.GetChild(itemValue).GetComponent<TextMeshProUGUI>().text = "Value: " + itensPlayers[i].GetItemValue().ToString();
-                buttonsPlayerInventory[i].transform.GetChild(itemQuantity).GetComponent<TextMeshProUGUI>().text = itensPlayers[i].GetItemQuantity().ToString();
-                buttonsPlayerInventory[i].name = itensPlayers[i].GetItemName();
-            }
+                InsertItensData(buttonsPlayerInventory[i], itensPlayers[i]);
+        }
+
+        private void InsertItensData(GameObject bt, ItemScriptableObject item)
+        {
+            bt.transform.GetChild(itemName).GetComponent<TextMeshProUGUI>().text = item.GetItemName();
+            bt.transform.GetChild(itemSprite).GetComponent<Image>().sprite = item.GetItemSprite();
+            bt.transform.GetChild(itemValue).GetComponent<TextMeshProUGUI>().text = "Value: " + item.GetItemValue().ToString();
+            bt.transform.GetChild(itemQuantity).GetComponent<TextMeshProUGUI>().text = item.GetItemQuantity().ToString();
+            bt.name = item.GetItemName();
         }
 
         public void SetNewItemQuantity(int newQuantity, int buttonPosition) => buttons[buttonPosition].transform.GetChild(itemQuantity).GetComponent<TextMeshProUGUI>().text = newQuantity.ToString();

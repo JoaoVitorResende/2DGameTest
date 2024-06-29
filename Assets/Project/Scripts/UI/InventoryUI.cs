@@ -94,9 +94,7 @@ namespace UserInterface
             for (int i = 0; i < spritePositions.Count; i++)
             {
                 if (spritePositions[i].name.Equals(itemName))
-                {
                     UnequipItem(itemName, i);
-                }
             }
         }
 

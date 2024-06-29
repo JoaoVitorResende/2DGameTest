@@ -17,13 +17,9 @@ namespace Player
             GetComponent<Animator>().SetFloat("Horizontal",movement.x);
 
             if(movement.x > 0)
-            {
                 GetComponent<SpriteRenderer>().flipX = false;
-            }
             else
-            {
                 GetComponent<SpriteRenderer>().flipX = true;
-            }
         }
 
         private void FixedUpdate() => MovePlayer();

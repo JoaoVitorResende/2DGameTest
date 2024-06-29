@@ -82,9 +82,7 @@ namespace UserInterface
             UpdateItemOnStore(newItemQuantity + itemMinimunQuantity, true);
             InventoryUI.isntance.RemoveItemFromInventory(itemName);
             if (newItemQuantity == 0)
-            {
                 Destroy(EventSystem.current.currentSelectedGameObject);
-            }
         }
 
         private void CheckItemQuantity(ItemScriptableObject item, bool isItemSold)

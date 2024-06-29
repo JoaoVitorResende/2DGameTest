@@ -8,10 +8,7 @@ namespace Util
         [SerializeField] List<AudioClip> clips = new List<AudioClip>();
         public static AudioSourceInGame instance;
 
-        private void Start()
-        {
-            instance = this;
-        }
+        private void Start() => instance = this;
 
         public void PlayAudioClip(int id)
         {
