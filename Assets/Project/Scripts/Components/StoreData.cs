@@ -24,16 +24,16 @@ namespace Util
         private void SetStoreItensOptionsBuy()
         {
             for (int i = 0; i < itemScriptableObjects.Count; i++)
-                InsertItensData(buttons[i], itemScriptableObjects[i]);
+                InsertItemsData(buttons[i], itemScriptableObjects[i]);
         }
 
         public void SetStoreItensOptionSell(List<ItemScriptableObject> itensPlayers, List<GameObject> buttonsPlayerInventory)
         {
             for (int i = 0; i < itensPlayers.Count; i++)
-                InsertItensData(buttonsPlayerInventory[i], itensPlayers[i]);
+                InsertItemsData(buttonsPlayerInventory[i], itensPlayers[i]);
         }
 
-        private void InsertItensData(GameObject bt, ItemScriptableObject item)
+        private void InsertItemsData(GameObject bt, ItemScriptableObject item)
         {
             bt.transform.GetChild(itemName).GetComponent<TextMeshProUGUI>().text = item.GetItemName();
             bt.transform.GetChild(itemSprite).GetComponent<Image>().sprite = item.GetItemSprite();

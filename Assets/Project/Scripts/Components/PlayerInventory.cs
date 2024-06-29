@@ -8,7 +8,7 @@ namespace Player
         public static PlayerInventory instance;
 
         [SerializeField] private int playerMoney = 30;
-        [SerializeField] List<ItemScriptableObject> itens = new List<ItemScriptableObject>();
+        [SerializeField] List<ItemScriptableObject> items = new List<ItemScriptableObject>();
         private bool isNewItemAdded = false;
         private void Start() => instance = this;
       
@@ -17,7 +17,7 @@ namespace Player
             if (playerMoney >= item.GetItemValue())
             {
                 playerMoney -= item.GetItemValue();
-                itens.Add(item);
+                items.Add(item);
                 SetIsNewItemAdded(true);
                 return true;
             }
@@ -27,24 +27,24 @@ namespace Player
 
         public void RemoveItemFromList(string itemName)
         {
-            for(int i = 0; i < itens.Count;i++)
+            for(int i = 0; i < items.Count;i++)
             {
-                if (itens[i].GetItemName().Equals(itemName))
+                if (items[i].GetItemName().Equals(itemName))
                 {
-                    playerMoney += itens[i].GetItemValue();
-                    itens.Remove(itens[i]);
+                    playerMoney += items[i].GetItemValue();
+                    items.Remove(items[i]);
                 }
             }
-            itens.RemoveAll(i => i == null);
+            items.RemoveAll(i => i == null);
         }
 
         public ItemScriptableObject GetItem(string itemName)
         {
-            for (int i = 0; i < itens.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
-                if(itens[i].GetItemName().Equals(itemName))
+                if(items[i].GetItemName().Equals(itemName))
                 {
-                    return itens[i];
+                    return items[i];
                 }
             }
             return null;
@@ -52,13 +52,13 @@ namespace Player
 
         public ItemScriptableObject GetLastItem()
         {
-            return itens[itens.Count - 1];
+            return items[items.Count - 1];
         }
 
         public bool GetIsNewItemAdded() => isNewItemAdded;
 
         public void SetIsNewItemAdded(bool isAdded) => isNewItemAdded = isAdded;
 
-        public List<ItemScriptableObject> GetListOfPlayersItens() => itens;
+        public List<ItemScriptableObject> GetListOfPlayersItens() => items;
     }
 }

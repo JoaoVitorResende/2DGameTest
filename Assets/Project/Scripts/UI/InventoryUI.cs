@@ -19,7 +19,7 @@ namespace UserInterface
 
         private float inventoryOn = 1f;
         private float inventoryOff = 0f;
-        private int itensEquipped = 0;
+        private int itemsEquipped = 0;
 
         public static InventoryUI isntance;
 
@@ -38,7 +38,7 @@ namespace UserInterface
 
         private void EquipItem(string itemName)
         {
-            if (itensEquipped < 3)
+            if (itemsEquipped < 3)
             {
                 EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
                 GameObject equippedItem = Instantiate(equippedCard);
@@ -50,14 +50,14 @@ namespace UserInterface
                 equippedItem.transform.GetComponent<Button>().onClick.AddListener(delegate () { AudioSourceInGame.instance.PlayAudioClip(2); });
                 equippedItem.name = itemName;
                 SetSpriteOnPlayer(item);
-                itensEquipped++;
+                itemsEquipped++;
             }
         }
 
         private void SetSpriteOnPlayer(ItemScriptableObject item)
         {
-            spritePositions[itensEquipped].sprite = item.GetItemSprite();
-            spritePositions[itensEquipped].name = item.GetItemName();
+            spritePositions[itemsEquipped].sprite = item.GetItemSprite();
+            spritePositions[itemsEquipped].name = item.GetItemName();
         }
 
         private void UpdateInventory(string itemName) => inventoryObjects.transform.Find(itemName).GetComponent<Button>().interactable = true;
@@ -75,15 +75,15 @@ namespace UserInterface
             if(itemName.Equals(""))
             {
                 itemName = EventSystem.current.currentSelectedGameObject.name;
-                id = itensEquipped;
+                id = itemsEquipped;
                 id--;
                 spritePositions[id].sprite = null;
                 UpdateInventory(itemName);
                 Destroy(EventSystem.current.currentSelectedGameObject);
-                itensEquipped--;
+                itemsEquipped--;
                 return;
             }
-            itensEquipped--;
+            itemsEquipped--;
             spritePositions[id].sprite = null;
             UpdateInventory(itemName);
             Destroy(EventSystem.current.currentSelectedGameObject);
